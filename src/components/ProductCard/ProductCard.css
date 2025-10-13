@@ -1,0 +1,8 @@
+.product { border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: white; display: flex; flex-direction: column; }
+.product img { width: 100%; height: 180px; object-fit: cover; background: #f1f5f9; }
+.product__body { padding: 12px; display: grid; gap: 8px; }
+.product__body h4 { font-size: .95rem; line-height: 1.2; height: 2.4em; overflow: hidden; }
+.product__body .price { font-weight: 700; color: #0f172a; }
+.product__body .btn { display: inline-block; text-align: center; padding: 8px 10px; background: #0ea5e9; color: white; border-radius: 10px; text-decoration: none; }
+.product__body .btn:hover { filter: brightness(.95); }
+

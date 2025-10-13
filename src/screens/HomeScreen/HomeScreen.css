@@ -1,0 +1,52 @@
+.home {
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+}
+
+.home__hero {
+  max-width: 820px;
+  width: 100%;
+  text-align: center;
+}
+
+.home__hero h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.home__hero p {
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+.home__form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.home__form input {
+  flex: 1;
+  max-width: 520px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+}
+
+.home__form button {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #0ea5e9;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.home__form button:hover {
+  background: #0284c7;
+}
+
+
