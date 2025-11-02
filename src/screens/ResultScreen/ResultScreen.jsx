@@ -22,7 +22,7 @@ export default function ResultScreen() {
       </section>
 
       <section className="result__alternatives">
-        <h3>Resultados de Square Catalog API</h3>
+        <h3>Resultados del catálogo</h3>
         {loading && <Loader />}
         {error && <p className="error">Error al cargar productos.</p>}
         <div className="result__grid">

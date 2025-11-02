@@ -15,11 +15,10 @@ export default function ChatBox() {
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const q = params.get('q')
-    if (q) {
+        if (q) {
       if (messages.length === 0) {
         addMessage({ role: 'system', content: 'Bienvenido/a a AntiShopper AI. Conversemos antes de comprar.' })
         addMessage({ role: 'user', content: `Quiero comprar ${q}` })
-        // Kick off first AI question via Ollama
         requestNextQuestion([
           { role: 'system', content: 'Inicio de conversación AntiShopper AI' },
           { role: 'user', content: `Quiero comprar ${q}` },
@@ -36,9 +35,8 @@ export default function ChatBox() {
     e.preventDefault()
     const text = input.trim()
     if (!text) return
-    addMessage({ role: 'user', content: text })
-    // Trigger next LLM question
-    requestNextQuestion(messages.concat({ role: 'user', content: text }))
+  addMessage({ role: 'user', content: text })
+  requestNextQuestion(messages.concat({ role: 'user', content: text }))
     setInput('')
   }
 

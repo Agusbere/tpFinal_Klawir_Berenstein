@@ -12,7 +12,6 @@ export default function App() {
   )
 }
 
-// Bootstrap here (remove main.jsx usage)
 const rootElement = document.getElementById('root')
 if (rootElement && !rootElement._reactRootContainer) {
   const root = createRoot(rootElement)

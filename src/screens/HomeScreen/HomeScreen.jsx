@@ -21,7 +21,7 @@ export default function HomeScreen() {
         <form onSubmit={handleSubmit} className="home__form">
           <input
             type="text"
-            placeholder="Ej: zapatillas de running"
+            placeholder="Ej: Lampara portatil"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />

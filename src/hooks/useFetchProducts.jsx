@@ -1,40 +1,41 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { searchCatalogItems } from '../utils/squareClient'
-
+import axios from 'axios'
 export default function useFetchProducts(query) {
   const [items, setItems] = useState([])
-  const [cursor, setCursor] = useState(null)
+  const [offset, setOffset] = useState(0)
   const [hasMore, setHasMore] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+
+  const limit = 12
 
   const fetchPage = useCallback(async (reset = false) => {
     if (!query) return
     setLoading(true)
     setError(null)
     try {
-      const data = await searchCatalogItems({ query, cursor: reset ? null : cursor, limit: 12 })
-      const newItems = data?.items || []
+      const currentOffset = reset ? 0 : offset
+      const res = await axios.get('/api/products', {
+        params: { q: query, limit, offset: currentOffset }
+      })
+      const newItems = res.data || []
       setItems((prev) => (reset ? newItems : [...prev, ...newItems]))
-      setCursor(data?.cursor || null)
-      setHasMore(Boolean(data?.cursor))
+      setOffset(currentOffset + newItems.length)
+      setHasMore(newItems.length === limit)
     } catch (e) {
-      if (e.response) {
-        // Helpful diagnostics for Square errors
-        console.error('Square error', e.response.status, e.response.data)
-      }
+      console.error('Products fetch error', e?.response || e.message || e)
       setError(e)
     } finally {
       setLoading(false)
     }
-  }, [query, cursor])
+  }, [query, offset])
 
   useEffect(() => {
     setItems([])
-    setCursor(null)
+    setOffset(0)
     setHasMore(false)
     if (query) fetchPage(true)
-  }, [query])
+  }, [query, fetchPage])
 
   const loadMore = useCallback(() => {
     if (hasMore && !loading) fetchPage(false)

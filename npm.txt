@@ -1,0 +1,4 @@
+npm i
+npm run start:server
+npm run dev
+ollama run llama3:latest:latest
